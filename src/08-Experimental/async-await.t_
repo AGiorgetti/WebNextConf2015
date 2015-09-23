@@ -1,0 +1,80 @@
+// Experimental
+
+// rename this file .ts and switch compilation to --target: ES6
+// 
+// or try with some polyfills
+// npm install es6_promise
+// tsd install es6-promise
+//
+// double check the version of node on which to run this sample
+// it will not work in if some ES6 features are not supported
+
+/// <reference path="../../typings/tsd.d.ts" />
+import * as http from "http";
+//import { Promise } from "es6-promise"
+import * as server from "../Sample01-ts/server"
+import { filter } from "../Sample01-ts/utilities"
+
+server.StartHttpServer();
+
+interface IRecord {
+	id: number;
+	name: string;
+	surname: string;
+}
+
+async function getRecords(): Promise<IRecord[]> {
+
+	var options = {
+		host: "127.0.0.1",
+		port: 8010,
+		path: "/",
+		method: "GET"
+	};
+
+	var p = new Promise<IRecord[]>((resolve) => {
+
+		http.get(options, (res) => {
+			var body = '';
+			res.on('data', (chunk: any) => {
+				body += chunk;
+			});
+			res.on('end', function() {
+				var result = <IRecord[]>JSON.parse(body);
+				//console.log(result);
+				resolve(result);
+			});
+		}).on("error", (error: any) => {
+			console.log(error);
+		});
+	});
+
+	return p;
+}
+
+// await can be used only inside async functions
+async function startup() {
+	
+	var people = await getRecords();
+	
+	// It's like writing procedural code!
+	
+	console.log(people);
+		
+	var result = filter(people, function(item){
+		return item.name === "alessandro";
+	})
+	
+	console.log(result);
+}
+
+startup();
+
+
+
+/*
+var person = filter(people, function(p) {
+		return p.name === 'alessandro';
+	})
+	console.log(person);
+	*/

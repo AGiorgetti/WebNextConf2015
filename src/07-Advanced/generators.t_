@@ -1,0 +1,23 @@
+// ES6
+
+// rename this file .ts and switch compilation to --target: ES6
+
+// A generator is a syntactic way to declare a function that can yield.
+// Yielding will give a value to the caller of the next() method 
+// of the generator, and will suspend execution at the yield point.
+// A generator also supports yield * which means that it will delegate
+// to another generator and yield the results that the inner generator yields.
+// yield and yield * are also bi-directional. A value can flow in as well as out.
+
+function *g(limit: number) {
+    for (var idx = 0; idx < limit; idx++) {
+        yield idx;
+    }
+}
+
+for (var i of g(100)) {
+    console.log(i);
+}
+
+//var array = [...g(50)];
+//var [first, second, ...rest] = g(100);

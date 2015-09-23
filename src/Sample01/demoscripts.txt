@@ -1,0 +1,22 @@
+/* STEP 2 */
+
+// what happes if you need to the process the data and change their shape?
+
+function preprocess(people) {
+	var result = new Array();
+	for (var i = 0; i < people.length; i++) {
+		result.push({
+			id: people[i.id],
+			fullname: people.name + " " + people.surname
+		})
+	}
+	return result;
+}
+
+people = preprocess(people);
+
+// will your filtering function still work? or do you get the error at runtime ?
+
+var person = utils.filter(people, function (p) {
+	return p.name === 'alessandro';
+});

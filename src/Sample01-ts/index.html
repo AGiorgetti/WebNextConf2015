@@ -1,0 +1,10 @@
+<html>
+	<p>To have the debugger work with sourcemaps emitted by the gulp-typescript, we need to use a browser (it doesn't work in VSCode).</p>
+	<p>Set the TypeScript compiler --module "AMD"</p>
+	
+<script src="../../libs/require.js"></script>
+<script>
+	require(["../../build/Sample01-ts/app"], function(app) {});
+</script>
+
+</html>

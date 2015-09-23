@@ -1,0 +1,23 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+	"editor.fontSize": 16,
+	
+	// Let's configure VSCode as a typical JavaScript editor (no semantic validation)
+	
+	// Controls VSCode's Javascript validation. If set to false both syntax and sematic validation is disabled
+	//"javascript.validate.enable": true,
+	// Run linter checks for JavaScript files - overrides validate.lint.* settings.
+	"javascript.validate.semanticValidation": false,
+	// Check JavaScript files for syntax errors.
+	//"javascript.validate.syntaxValidation": true,
+
+	
+	// configure the intellisense to use the local copy of the compiler
+	// http://stackoverflow.com/questions/32380131/how-do-i-use-typescript-1-6-with-visual-studio-code-to-get-generators-support
+	
+	// Specifies the folder path containing the tsserver and lib*.d.ts files to use.
+	"typescript.tsdk": "C:\\Work\\WebNextConf2015\\WebNextConf2015\\node_modules\\typescript\\lib"
+	// relative path is not working
+	//"typescript.tsdk": "${workspaceRoot}\\node_modules\\typescript\\lib"
+	//"typescript.tsdk": "node_modules/typescript/lib"
+}
