@@ -26,36 +26,44 @@ var f4 = function() {
 // WARNING: what is 'this' ?
 // Use an arrow function inside a class to have 'this' reference
 // the instance of the class in a correct way.
-class A {
+class DelayedLogger {
 	// classes body always behave as "use strict" was specified.
-	
-	constructor(public name: string) {}
+	name: string;
+
+	constructor(name: string) {
+		this.name = name;
+	}
 	
 	// WARNING: what is 'this' ?
-	delayedConsoleLog() {
+	log(message: string) {
 		this.name = "test";
-						
+
 		setTimeout(function() {
 			
 			// inside a function the value of 'this' depends on how the function it's called
 			// non strict mode: it must be an object, if not set it's the global object
 			// strict mode: it remain whatever it was when entering the execution context: undefined or a value
 			
-			console.log(this.name); // <- undefined!!
+			console.log(this.name + ": " + message); // <- undefined!!
 		}, 500);
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
+
+
+
+
+
 		setTimeout(() => {
-			console.log(this.name); // <- this is good!
+			console.log(this.name + ": " + message); // <- this is good!
 		}, 1000)
 	}
 }
 
-var instance = new A("test");
-instance.delayedConsoleLog();
+var instance = new DelayedLogger("test");
+instance.log("test message");
